@@ -33,4 +33,11 @@ getRatesBoard();
 
 setInterval(getRatesBoard, 6000);
 // операции с деньгами
+const userMoney = new MoneyManager;
+
+userMoney.addMoneyCallback = (data) =>{
+    return ApiConnector.addMoney(data, response =>{
+        // дописать %Р
+    });
+}
 // работа с избранным
