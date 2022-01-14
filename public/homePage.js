@@ -18,5 +18,19 @@ ApiConnector.current(response =>{
 })
 
 // получение текущиз курсов валют
+const rate = new RatesBoard;
+
+function getRatesBoard(){
+    return ApiConnector.getStocks(response =>{
+        if(response.success === true){
+            rate.clearTable();
+            rate.fillTable(response.data);
+        }
+    });
+}
+
+getRatesBoard();
+
+setInterval(getRatesBoard, 6000);
 // операции с деньгами
 // работа с избранным
