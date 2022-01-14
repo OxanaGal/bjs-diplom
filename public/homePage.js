@@ -3,7 +3,7 @@
 // выход из личного кабинета
 const userLogOut = new LogoutButton;
 
-userLogOut.action = (data) => {
+userLogOut.action = () => {
     return ApiConnector.logout(response =>{
         if(response.success === true){
             location.reload();
