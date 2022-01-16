@@ -41,7 +41,7 @@ userBalance.addMoneyCallback = (data) =>{
             ProfileWidget.showProfile(response.data);
             userBalance.setMessage(response.success, "Баланс пополнен");
         } else {
-            userBalance.setMessage(response.success, "Не удалось пополнить банланс");
+            userBalance.setMessage(response.success, response.error);
         }
     });
 }
@@ -52,7 +52,7 @@ userBalance.conversionMoneyCallback = (data) =>{
             ProfileWidget.showProfile(response.data);
             userBalance.setMessage(response.success, "Конветация завершена");
         } else {
-            userBalance.setMessage(response.success, "Ошибка конвертации");
+            userBalance.setMessage(response.success, response.error);
         }
     });
 }
@@ -63,7 +63,7 @@ userBalance.sendMoneyCallback = (data) =>{
             ProfileWidget.showProfile(response.data);
             userBalance.setMessage(response.success, "Перевод завершен успешно");
         } else {
-            userBalance.setMessage(response.success, "Ошибка транзакции");
+            userBalance.setMessage(response.success, response.error);
         }
     });
 }
@@ -88,7 +88,7 @@ userFav.addUserCallback = data =>{
             getUserFav();
             userFav.setMessage(response.success, "Добавлено в избранное");
         } else {
-            userFav.setMessage(response.success, "Ошибка добавления пользователя");
+            userFav.setMessage(response.success, response.error);
         }
     });
 }
@@ -99,7 +99,7 @@ userFav.removeUserCallback = data =>{
             getUserFav();
             userFav.setMessage(response.success, "Удалено из избранного");
         } else {
-            userFav.setMessage(response.success, "Ошибка удаления пользователя");
+            userFav.setMessage(response.success, response.error);
         }
     });
 }

@@ -8,7 +8,7 @@ user.loginFormCallback = (data) => {
         if(response.success === true){
             location.reload();
         } else {
-            user.setLoginErrorMessage("Логин или пароль введены неверно");
+            user.setLoginErrorMessage(response.error);
         }
     });
 }
@@ -19,7 +19,7 @@ user.registerFormCallback = (data) =>{
         if(response.success === true){
             location.reload();
         } else {
-            user.setRegisterErrorMessage("Регистрация не удалась");
+            user.setRegisterErrorMessage(response.error);
         }
     });
 }
