@@ -31,13 +31,40 @@ function getRatesBoard(){
 
 getRatesBoard();
 
-setInterval(getRatesBoard, 6000);
+setInterval(getRatesBoard, 60000);
 // операции с деньгами
-const userMoney = new MoneyManager;
+const userBalance = new MoneyManager;
 
-userMoney.addMoneyCallback = (data) =>{
+userBalance.addMoneyCallback = (data) =>{
     return ApiConnector.addMoney(data, response =>{
-        // дописать %Р
+        if(response.success === true){
+            ProfileWidget.showProfile(response.data);
+            userBalance.setMessage(response.success, "Баланс пополнен");
+        } else {
+            userBalance.setMessage(response.success, "Не удалось пополнить банланс");
+        }
+    });
+}
+
+userBalance.conversionMoneyCallback = (data) =>{
+    return ApiConnector.convertMoney(data, response =>{
+        if(response.success === true){
+            ProfileWidget.showProfile(response.data);
+            userBalance.setMessage(response.success, "Конветация завершена");
+        } else {
+            userBalance.setMessage(response.success, "Ошибка конвертации");
+        }
+    });
+}
+
+userBalance.sendMoneyCallback = (data) =>{
+    return ApiConnector.transferMoney(data, response =>{
+        if(response.success === true){
+            ProfileWidget.showProfile(response.data);
+            userBalance.setMessage(response.success, "Перевод завершен успешно");
+        } else {
+            userBalance.setMessage(response.success, "Ошибка транзакции");
+        }
     });
 }
 // работа с избранным
