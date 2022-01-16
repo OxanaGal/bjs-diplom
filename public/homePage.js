@@ -75,10 +75,12 @@ function getUserFav(){
         if(response.success === true){
             userFav.clearTable();
             userFav.fillTable(response.data);
-            MoneyManager.updateUserList(response.data);
+            userBalance.updateUserList(response.data);
         }
     });
 }
+
+getUserFav();
 
 userFav.addUserCallback = data =>{
     return ApiConnector.addUserToFavorites(data, response =>{
