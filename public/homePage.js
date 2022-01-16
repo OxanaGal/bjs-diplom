@@ -83,10 +83,10 @@ function getUserFav(){
 userFav.addUserCallback = data =>{
     return ApiConnector.addUserToFavorites(data, response =>{
         if(response.success === true){
-            ProfileWidget.showProfile(response.data);
+            getUserFav();
             userFav.setMessage(response.success, "Добавлено в избранное");
         } else {
-            userFav.setMessage(response.success, "Ошибка добавления");
+            userFav.setMessage(response.success, "Ошибка добавления пользователя");
         }
     });
 }
@@ -94,10 +94,10 @@ userFav.addUserCallback = data =>{
 userFav.removeUserCallback = data =>{
     return ApiConnector.removeUserFromFavorites(data, response =>{
         if(response.success === true){
-            ProfileWidget.showProfile(response.data);
+            getUserFav();
             userFav.setMessage(response.success, "Удалено из избранного");
         } else {
-            userFav.setMessage(response.success, "Ошибка удаления");
+            userFav.setMessage(response.success, "Ошибка удаления пользователя");
         }
     });
 }
