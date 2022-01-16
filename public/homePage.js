@@ -68,3 +68,36 @@ userBalance.sendMoneyCallback = (data) =>{
     });
 }
 // работа с избранным
+const userFav = new FavoritesWidget;
+
+function getUserFav(){
+    return ApiConnector.getFavorites(response =>{
+        if(response.success === true){
+            userFav.clearTable();
+            userFav.fillTable(response.data);
+            MoneyManager.updateUserList(response.data);
+        }
+    });
+}
+
+userFav.addUserCallback = data =>{
+    return ApiConnector.addUserToFavorites(data, response =>{
+        if(response.success === true){
+            ProfileWidget.showProfile(response.data);
+            userFav.setMessage(response.success, "Добавлено в избранное");
+        } else {
+            userFav.setMessage(response.success, "Ошибка добавления");
+        }
+    });
+}
+
+userFav.removeUserCallback = data =>{
+    return ApiConnector.removeUserFromFavorites(data, response =>{
+        if(response.success === true){
+            ProfileWidget.showProfile(response.data);
+            userFav.setMessage(response.success, "Удалено из избранного");
+        } else {
+            userFav.setMessage(response.success, "Ошибка удаления");
+        }
+    });
+}
