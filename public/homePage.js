@@ -75,7 +75,7 @@ function getUserFav(){
         if(response.success === true){
             userFav.clearTable();
             userFav.fillTable(response.data);
-            userBalance.updateUserList(response.data);
+            userBalance.updateUsersList(response.data);
         }
     });
 }
